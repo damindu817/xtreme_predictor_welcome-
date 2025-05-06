@@ -15,6 +15,7 @@
       --bg-darker: #0A0A12;
       --card-bg: rgba(25, 25, 40, 0.95);
       --success: #00E676;
+      --warning: #FFA000;
     }
 
     @font-face {
@@ -44,24 +45,15 @@
       -ms-user-select: none;
       user-select: none;
       touch-action: none;
-    }
-
-    .app-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      width: 100%;
-      max-width: 320px;
-      padding: 2rem;
-      position: relative;
-      z-index: 10;
     }
 
     .logo-container {
       position: relative;
       margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo-icon {
@@ -111,21 +103,23 @@
       margin-top: 1.2rem;
       color: var(--primary);
       letter-spacing: 0.5px;
+      text-align: center;
     }
 
     .tagline {
       font-size: 1rem;
       font-weight: 500;
-      margin: 1rem 0 2rem;
+      margin: 1rem auto 2rem;
       color: var(--text-muted);
       max-width: 280px;
       line-height: 1.6;
+      text-align: center;
     }
 
     .loader-container {
       width: 100%;
       max-width: 280px;
-      margin: 1.5rem 0;
+      margin: 1.5rem auto;
     }
 
     .loader-header {
@@ -134,11 +128,14 @@
       margin-bottom: 0.5rem;
       font-size: 0.8rem;
       color: var(--text-light);
+      width: 100%;
     }
 
     .loader-status {
       font-weight: 500;
       color: var(--text-light);
+      min-width: 120px;
+      text-align: right;
     }
 
     .loader {
@@ -169,6 +166,26 @@
       animation: shine 2s infinite;
     }
 
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(161, 161, 176, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
     .footer {
       position: absolute;
       bottom: 1.5rem;
@@ -186,6 +203,8 @@
       margin-top: 0.5rem;
       font-size: 0.65rem;
       color: var(--success);
+      justify-content: center;
+      width: 100%;
     }
 
     .security-badge svg {
@@ -244,31 +263,36 @@
   </style>
 </head>
 <body oncontextmenu="return false;">
-  <div class="app-container">
-    <div class="logo-container">
-      <div class="logo-icon">
+  <div class="logo-container">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5L18 9v6l-6 3.5-6-3.5V9l6-3.5z"/>
+      </svg>
+      <div class="game-badge">
         <svg viewBox="0 0 24 24">
-          <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5L18 9v6l-6 3.5-6-3.5V9l6-3.5z"/>
+          <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
         </svg>
-        <div class="game-badge">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-          </svg>
-        </div>
       </div>
-      <div class="logo-text">XTREME PREDICTOR</div>
     </div>
-    
-    <div class="tagline">AI-Powered Predictions for Crash, Aviator & Baccarat</div>
-    
-    <div class="loader-container">
-      <div class="loader-header">
-        <span>System Initialization</span>
-        <span class="loader-status">Loading...</span>
-      </div>
-      <div class="loader">
-        <div class="loader-progress"></div>
-      </div>
+    <div class="logo-text">XTREME PREDICTOR</div>
+  </div>
+  
+  <div class="tagline">AI-Powered Predictions for Crash, Aviator & Baccarat</div>
+  
+  <div class="loader-container">
+    <div class="loader-header">
+      <span>System Initialization</span>
+      <span class="loader-status">Loading...</span>
+    </div>
+    <div class="loader">
+      <div class="loader-progress"></div>
+    </div>
+    <div class="progress-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
   
@@ -299,30 +323,48 @@
     
     // Update loading status dynamically
     const statusText = document.querySelector('.loader-status');
+    const dots = document.querySelectorAll('.dot');
     const statusMessages = [
-      "Loading game modules...",
-      "Analyzing patterns...",
-      "Connecting to service...",
-      "Verifying security...",
-      "Optimizing algorithms...",
-      "Finalizing setup...",
-      "Preparing interface..."
+      {text: "Loading game modules..."},
+      {text: "Analyzing patterns..."},
+      {text: "Connecting to service..."},
+      {text: "Verifying security..."},
+      {text: "Optimizing algorithms..."},
+      {text: "Finalizing setup..."},
+      {text: "Preparing interface..."}
     ];
     
     let currentStatus = 0;
+    let currentDot = 0;
+    
     const statusInterval = setInterval(() => {
-      statusText.textContent = statusMessages[currentStatus];
+      statusText.textContent = statusMessages[currentStatus].text;
+      statusText.style.color = "var(--text-light)";
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentDot);
+      });
+      
       currentStatus = (currentStatus + 1) % statusMessages.length;
-    }, 1285); // Adjusted to 9 seconds total
+      currentDot = (currentDot + 1) % dots.length;
+    }, 1285);
     
     // Redirect after loading animation
     setTimeout(function() {
       clearInterval(statusInterval);
       statusText.textContent = "Ready!";
+      statusText.style.color = "var(--success)";
+      
+      // Activate all dots at completion (වර්ණය නොවෙනස්ව තබමු)
+      dots.forEach(dot => {
+        dot.classList.add('active');
+      });
+      
       setTimeout(() => {
         location.replace("https://damindu817.github.io/xtreme_Predictor_Virtual_horse_and_dog_racing/");
       }, 300);
-    }, 9000); // Changed to 9000ms (9 seconds)
+    }, 9000);
   </script>
 </body>
 </html>
